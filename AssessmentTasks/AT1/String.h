@@ -12,8 +12,8 @@ public:
 	~String();
 public:
 	size_t Length() const; // returns the size of the length using strlen()
-	char CharacterAt(int index); // returns the character  at index
-//	bool EqualTo(const String other) const; // returns true if the string provided is == the stored string
+	char CharacterAt(int index); // returns the character at index specified
+	bool EqualTo(const String& other) const; // returns true if the string provided is == the stored string
 //	void Append(const String str); //adds the provided string to the end current string
 //	void Prepend(const String str); //adds the provided string to the start of the current string
 	const char* CStr() const; //huh ???????????????????????????????????????????????????????? get my epic string
@@ -27,10 +27,11 @@ public:
 //	void ReadFromConsole(); // get input from the console and store the result
 //	void WriteToConsole(); // write the current string to the console
 //public:
-//	bool operator==(const String other); //returns true if lhs == rhs ???????????????? bruv what sides
-//	bool operator!=(const String other); // returns true if lhs != rhs ?????????????????????
+	bool operator==(const String& other); //returns true if lhs == rhs
+	bool operator!=(const String& other); // returns true if lhs != rhs 
 //	void operator=(const String str); //replaces the characters in teh lhs with the characters in rhs
-//	char operator[](size_t index); //returns the character located at pos provided
+//				DOES THIS only work if the strings are the same lenght?
+	char operator[](int index); //returns the character located at pos provided
 //	//String& operator+(const String _other); //return
 //	//void operator+=(const String _other); 
 private:
