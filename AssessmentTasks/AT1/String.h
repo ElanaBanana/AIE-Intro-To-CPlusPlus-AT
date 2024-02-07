@@ -7,34 +7,34 @@
 class String {
 public:
 	String();
-	String(const char* _str);
-	String(const String& _other);
+	String(const char* str);
+	String(const String& otherString);
 	~String();
 public:
-	size_t Length() const;
-	char& CharacterAt(size_t _index);
-	const char& CharacterAt(size_t _index) const;
-	bool EqualTo(const String& _other) const;
-	String& Append(const String& _str);
-	String& Prepend(const String& _str);
-	const char* CStr() const;
-	String& ToLower();
-	String& ToUpper();
-	size_t Find(const String& _str);
-	size_t Find(size_t _startIndex, const String& _str);
-	String& Replace(const String& _find, const String& _replace);
-	String& ReadFromConsole();
-	String& WriteToConsole();
-public:
-	bool operator==(const String& _other);
-	bool operator!=(const String& _other);
-	String& operator=(const String& _str);
-	char& operator[](size_t _index);
-	const char& operator[](size_t _index) const;
+	size_t Length() const; // returns the size of the length using strlen()
+	char CharacterAt(int index); // returns the character  at index
+//	bool EqualTo(const String other) const; // returns true if the string provided is == the stored string
+//	void Append(const String str); //adds the provided string to the end current string
+//	void Prepend(const String str); //adds the provided string to the start of the current string
+	const char* CStr() const; //huh ???????????????????????????????????????????????????????? get my epic string
+//	void ToLower(); // converts all the values in the current string to lowercase
+//	void ToUpper(); // converts all the values in the current string to UPPERCASE
+//
+//	//
+//	size_t Find(const String str); //returns the location of the start of the specific string
+//	size_t Find(size_t startIndex, const String str); //same as above but starts looking from specified index
+//	void Replace(const String _find, const String replace); //replaces all the occurances of specified string in the current string with new string
+//	void ReadFromConsole(); // get input from the console and store the result
+//	void WriteToConsole(); // write the current string to the console
+//public:
+//	bool operator==(const String other); //returns true if lhs == rhs ???????????????? bruv what sides
+//	bool operator!=(const String other); // returns true if lhs != rhs ?????????????????????
+//	void operator=(const String str); //replaces the characters in teh lhs with the characters in rhs
+//	char operator[](size_t index); //returns the character located at pos provided
+//	//String& operator+(const String _other); //return
+//	//void operator+=(const String _other); 
 private:
-	/*
-	* Put your internal data structures and members here
-	*/
+	char* theStringArray; //pointer to the string array
 };
 
 #endif
