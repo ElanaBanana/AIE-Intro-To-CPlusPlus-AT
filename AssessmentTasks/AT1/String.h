@@ -14,8 +14,8 @@ public:
 	size_t Length() const; // returns the size of the length using strlen()
 	char CharacterAt(int index); // returns the character at index specified
 	bool EqualTo(const String& other) const; // returns true if the string provided is == the stored string
-//	void Append(const String str); //adds the provided string to the end current string
-//	void Prepend(const String str); //adds the provided string to the start of the current string
+	void Append(const String& str); //adds the provided string to the end current string
+	void Prepend(const String& str); //adds the provided string to the start of the current string
 	const char* CStr() const; //huh ???????????????????????????????????????????????????????? get my epic string
 //	void ToLower(); // converts all the values in the current string to lowercase
 //	void ToUpper(); // converts all the values in the current string to UPPERCASE
@@ -30,12 +30,12 @@ public:
 	bool operator==(const String& other); //returns true if lhs == rhs
 	bool operator!=(const String& other); // returns true if lhs != rhs 
 //	void operator=(const String str); //replaces the characters in teh lhs with the characters in rhs
-//				DOES THIS only work if the strings are the same lenght?
+//								DOES THIS only work if the strings are the same lenght????????????????????????????
 	char operator[](int index); //returns the character located at pos provided
-//	//String& operator+(const String _other); //return
+	char* operator+(const String& other); //return
 //	//void operator+=(const String _other); 
 private:
-	char* theStringArray; //pointer to the string array
+	char* theStringArray; //pointer to the char array containing the class string
 };
 
 #endif

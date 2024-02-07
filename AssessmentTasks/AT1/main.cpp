@@ -3,8 +3,8 @@
 using namespace std;
 
 int main() {
-	char array[6] = { 'h','e','l','l','o', '\0'};
-	//char array[7] = { 'H','e','l','l','o','W','\0'};
+	char array[8] = { 'H','e','l','l','o',',',' ','\0'};
+	//char array[7] = { 'W','o','r','l','d','!','\0'};
 	char* arrayPtr = array;
 	
 				//CONSTRUCTORS
@@ -26,7 +26,7 @@ int main() {
 	cout << "The character at index 1 is: " << str2.CharacterAt(1) << endl;
 	//Out of bound checks
 	cout << "The character at index -1 (out of bounds): " << str2.CharacterAt(-1) << endl;
-	cout << "The character at index 5 (out of bounds): " << str2.CharacterAt(5) << endl;
+	cout << "The character at index 5 (out of bounds): " << str2.CharacterAt(7) << endl;
 
 				//EQUAL TO
 	//check that str1 is equal to str3 (true), and check if str1 is equal to str2 (false)
@@ -48,7 +48,20 @@ int main() {
 	cout << "The character at index 1 is: " << str2[1] << endl;
 	//Out of bound checks
 	cout << "The character at index -1 (out of bounds): " << str2[-1] << endl;
-	cout << "The character at index 5 (out of bounds): " << str2[5] << endl;
+	cout << "The character at index 5 (out of bounds): " << str2[7] << endl;
+
+			//OPERATOR OVERLOAD +
+	cout << "str1 + str3: " << str1 + str3 << endl;
+
+			//APPEND
+	cout << "Appending str2 before appending: " << str2.CStr() << endl;
+	str2.Append(str3);
+	cout << "Appending str2 with str3: " << str2.CStr() << endl;
+
+			//PREPEND
+	cout << "Appending str2 before prepending: " << str2.CStr() << endl;
+	str2.Prepend(str3);
+	cout << "Prepending str3 to str2: " << str2.CStr() << endl;
 
 	return 0;
 }

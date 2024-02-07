@@ -2,9 +2,10 @@
 #include <iostream>
 using namespace std;
 
+char* joinStrings(const String& strLHS, const String& strRHS); //function to add two strings together
 
 String::String() {
-	theStringArray = new char[7] {'p', 'o', 't', 't', 'e', 'r', '\0'};
+	theStringArray = new char[9] {'P', 'o', 't', 't', 'e', 'r','.',' ', '\0'};
 	//default constructor
 }
 
@@ -36,7 +37,7 @@ String::String(const String& otherString){ //otherString.CStr(); returns a point
 
 String::~String() {
 	//default destructor
-	delete[] theStringArray;
+	delete[] theStringArray; //AVADAAAAAA KEDAVRAA
 }
 
 size_t String::Length() const {
@@ -68,8 +69,71 @@ bool String::EqualTo(const String& other) const{
 	return false; //default value
 }
 
+char* temp; //pointer to temp dynamic array
+
+void String::Append(const String& str) {
+	////create a new char array the length of both arrays combine
+	//												//check if array length is too long????????????
+	//int newLen = Length() + str.Length(); // the size of the new array 
+	////temp pointer for new string to a new char array of size newLen
+	//char* temp = new char[newLen+1]; //+1 extra space for null terminator
+	////for each value in lhs add to new array
+	//for (int i = 0; i < Length(); i++) {
+	//	temp[i] = theStringArray[i];
+	//}
+	////for each value in rhs append to the end of previous string
+	//for (int i = Length(), j = 0; i < newLen; i++, j++) { //start where last for loop ended, until the end of the newLen
+	//	//i = the first index after the end of first append
+	//	//j is used to keep track of the index being accessed from the array
+	//	//keep appending until i < length of second string + the starting index -1, which is for the null terminator
+	//	temp[i] = str.CStr()[j];
+	//}
+	//temp[newLen] = '\0'; //add null terminator to the last index of array
+	//append the two strings
+	char* appended = joinStrings(theStringArray, str);
+	//delete old value stored in class pointer
+	delete[] theStringArray;
+	//finally set the class pointer to the new appended array
+	theStringArray = appended;
+	//set the temp pointer to nullptr to avoid leaving a hanging pointer
+	temp = nullptr;
+}
+
+void String::Prepend(const String& str) {
+	//prepend calls the join strings function but opposite to the append function
+		//append the two strings
+	char* prepended = joinStrings(str, theStringArray);
+	//delete old value stored in class pointer
+	delete[] theStringArray;
+	//finally set the class pointer to the new appended array
+	theStringArray = prepended;
+	//set the temp pointer to nullptr to avoid leaving a hanging pointer
+	temp = nullptr;
+}
+
+char* joinStrings(const String& strLHS, const String& strRHS) {//function joins two strings the RHS is added the the end of the LHS
+		//create a new char array the length of both arrays combine
+													//check if array length is too long????????????
+	int newLen = strLHS.Length() + strRHS.Length(); // the size of the new array 
+	//temp pointer for new string to a new char array of size newLen
+	temp = new char[newLen + 1]; //+1 extra space for null terminator
+	//for each value in lhs add to new array
+	for (int i = 0; i < strLHS.Length(); i++) {
+		temp[i] = strLHS.CStr()[i];
+	}
+	//for each value in rhs append to the end of previous string
+	for (int i = strLHS.Length(), j = 0; i < newLen; i++, j++) { //start where last for loop ended, until the end of the newLen
+		//i = the first index after the end of first append
+		//j is used to keep track of the index being accessed from the array
+		//keep appending until i < length of second string + the starting index -1, which is for the null terminator
+		temp[i] = strRHS.CStr()[j];
+	}
+	temp[newLen] = '\0'; //add null terminator to the last index of array
+	return temp; //returns the pointer to the new string
+}
+
 const char* String::CStr() const {
-	return theStringArray;
+	return theStringArray; //returns a pointer to the char array storing the class string
 }
 
 bool String::operator ==(const String& other) { //overriding the equality operator
@@ -89,6 +153,10 @@ bool String::operator !=(const String& other) { //overriding the not equal to op
 char String::operator [](int index) { //overriding the [] operator
 	//finds the character at specific index and returns the char, else return null terminator
 	return CharacterAt(index);
+}
+
+char* String::operator +(const String& other) {
+	return joinStrings(theStringArray, other);
 }
 
 
