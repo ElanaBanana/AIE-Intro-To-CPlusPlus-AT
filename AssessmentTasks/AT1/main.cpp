@@ -4,8 +4,9 @@ using namespace std;
 
 int main() {
 	char array[8] = { 'H','e','l','l','o',',',' ','\0'};
-	//char array[7] = { 'W','o','r','l','d','!','\0'};
+	char array2[7] = { 'W','o','r','l','d','!','\0'};
 	char* arrayPtr = array;
+	char* array2Ptr = array2;
 	
 				//CONSTRUCTORS
 	//default constructor
@@ -33,35 +34,53 @@ int main() {
 	cout << "Are str1 and str3 equal?: " << str1.EqualTo(str3) << endl;
 	cout << "Are str1 and str2 equal?: " << str1.EqualTo(str2) << endl;
 
-			//OPERATOR OVERLOAD ==
+				//APPEND
+	cout << "Appending str2 before appending: " << str2.CStr() << endl;
+	str2.Append(str3);
+	cout << "Appending str2 with str3: " << str2.CStr() << endl;
+
+				//PREPEND
+	cout << "Appending str2 before prepending: " << str2.CStr() << endl;
+	str2.Prepend(str3);
+	cout << "Prepending str3 to str2: " << str2.CStr() << endl;
+
+				//TO LOWER
+	str1.ToLower();
+	cout << "Lets make str1 lower case!: " << str1.CStr() << endl;
+
+				//TO UPPER
+	str1.ToUpper();
+	cout << "Actually... I'm not a fan, lets make str1 UPPERCASE!: " << str1.CStr() << endl;
+
+
+				//WRITE TO CONSOLE
+	cout << "Now what is in str2?: ";
+	str2.WriteToConsole();
+
+				//OPERATOR OVERLOAD ==
 	if (str1 == str3) {
 		cout << "str1 and str3 are equal!!!" << endl;
 	}
 
-			//OPERATOR OVERLOAD !=
+				//OPERATOR OVERLOAD !=
 	if (str1 != str2) {
 		cout << "str1 is not equal to str2 :(((" << endl;
 	}
 
-			//OPERATOR OVERLOAD []
+				//OPERATOR OVERLOAD []
 	//Look for character at [1] in str2
 	cout << "The character at index 1 is: " << str2[1] << endl;
 	//Out of bound checks
 	cout << "The character at index -1 (out of bounds): " << str2[-1] << endl;
 	cout << "The character at index 5 (out of bounds): " << str2[7] << endl;
 
-			//OPERATOR OVERLOAD +
-	cout << "str1 + str3: " << str1 + str3 << endl;
+				//OPERATOR OVERLOAD +
+	String newString(str1 + str3);
+	cout << "str1 + str3 is: " << newString.CStr() << endl;
 
-			//APPEND
-	cout << "Appending str2 before appending: " << str2.CStr() << endl;
-	str2.Append(str3);
-	cout << "Appending str2 with str3: " << str2.CStr() << endl;
-
-			//PREPEND
-	cout << "Appending str2 before prepending: " << str2.CStr() << endl;
-	str2.Prepend(str3);
-	cout << "Prepending str3 to str2: " << str2.CStr() << endl;
+				//OPERATOR OVERLOAD +=
+	newString += str1;
+	cout << "newString + str1 is: " << newString.CStr() << endl;
 
 	return 0;
 }

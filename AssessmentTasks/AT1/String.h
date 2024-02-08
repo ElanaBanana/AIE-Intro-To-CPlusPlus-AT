@@ -16,24 +16,22 @@ public:
 	bool EqualTo(const String& other) const; // returns true if the string provided is == the stored string
 	void Append(const String& str); //adds the provided string to the end current string
 	void Prepend(const String& str); //adds the provided string to the start of the current string
-	const char* CStr() const; //huh ???????????????????????????????????????????????????????? get my epic string
-//	void ToLower(); // converts all the values in the current string to lowercase
-//	void ToUpper(); // converts all the values in the current string to UPPERCASE
-//
-//	//
-//	size_t Find(const String str); //returns the location of the start of the specific string
-//	size_t Find(size_t startIndex, const String str); //same as above but starts looking from specified index
+	const char* CStr() const; //get my epic string LITERALLY
+	void ToLower(); // converts all the values in the current string to lowercase
+	void ToUpper(); // converts all the values in the current string to UPPERCASE
+
+	int Find(const String& str); //returns the location of the start of the specific string
+//	int Find(int startIndex, const String str); //same as above but starts looking from specified index
 //	void Replace(const String _find, const String replace); //replaces all the occurances of specified string in the current string with new string
 //	void ReadFromConsole(); // get input from the console and store the result
-//	void WriteToConsole(); // write the current string to the console
+	void WriteToConsole(); // write the current string to the console
 //public:
 	bool operator==(const String& other); //returns true if lhs == rhs
 	bool operator!=(const String& other); // returns true if lhs != rhs 
-//	void operator=(const String str); //replaces the characters in teh lhs with the characters in rhs
-//								DOES THIS only work if the strings are the same lenght????????????????????????????
+	void operator=(const String& str); //replaces the characters in teh lhs with the characters in rhs
 	char operator[](int index); //returns the character located at pos provided
-	char* operator+(const String& other); //return
-//	//void operator+=(const String _other); 
+	String operator+(const String& other); //return a pointer to the new concatantion of the two strings
+	void operator+=(const String& other);  //
 private:
 	char* theStringArray; //pointer to the char array containing the class string
 };
