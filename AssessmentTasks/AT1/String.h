@@ -20,9 +20,9 @@ public:
 	void ToLower(); // converts all the values in the current string to lowercase
 	void ToUpper(); // converts all the values in the current string to UPPERCASE
 
-	int Find(const String& str); //returns the location of the start of the specific string
-//	int Find(int startIndex, const String str); //same as above but starts looking from specified index
-//	void Replace(const String _find, const String replace); //replaces all the occurances of specified string in the current string with new string
+	int Find(const String& findString); //returns the location of the start of the FIRST INSTANCE of the specific string
+	int Find(int startIndex, const String& findString); //same as above but starts looking from specified index
+	void Replace(const String& findString, const String& replaceString); //replaces all the occurances of specified string in the current string with new string
 //	void ReadFromConsole(); // get input from the console and store the result
 	void WriteToConsole(); // write the current string to the console
 //public:
@@ -31,7 +31,7 @@ public:
 	void operator=(const String& str); //replaces the characters in teh lhs with the characters in rhs
 	char operator[](int index); //returns the character located at pos provided
 	String operator+(const String& other); //return a pointer to the new concatantion of the two strings
-	void operator+=(const String& other);  //
+	void operator+=(const String& other);  //sets the value before += to become the concatanation of two strings
 private:
 	char* theStringArray; //pointer to the char array containing the class string
 };
