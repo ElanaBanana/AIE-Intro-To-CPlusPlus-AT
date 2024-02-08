@@ -104,6 +104,16 @@ int main() {
 	cout << "Before replacement, str2 is: " << str2.CStr() << endl;
 	str2.Replace(str3, strongerWizard);
 	cout << "It looks like this: " << str2.CStr() << endl;
+	cout << "Now let's put it back, because Gandalf is not from the Wizarding World!" << endl;
+	str2.Replace(strongerWizard, str3);
+	cout << "Now it looks like this: " << str2.CStr() << endl;
+
+				//READ FROM CONSOLE
+	cout << "\n	---READ FROM CONSOLE OUTPUT---" << endl;
+	cout << "Let's set str2 to a new value!" << endl;
+	str2.ReadFromConsole();
+	cout << "Wow! What an input, very impressive, let's take a look: ";
+	cout << str2.CStr() << endl;
 
 				//WRITE TO CONSOLE
 	cout << "\n	---WRITE TO CONSOLE OUTPUT---" << endl;
@@ -112,12 +122,16 @@ int main() {
 
 				//OPERATOR OVERLOAD ==
 	cout << "\n	---OPERATOR OVERLOAD == OUTPUT---" << endl;
+	cout << "Are st1 and str3 equal?" << endl;
+	cout << "Str1: " << str1.CStr() << endl;
+	cout << "Srt3: " << str3.CStr() << endl;
 	if (str1 == str3) {
 		cout << "str1 and str3 are equal!!!" << endl;
 	}
 
 				//OPERATOR OVERLOAD !=
 	cout << "\n	---OPERATOR OVERLOAD != OUTPUT---" << endl;
+	cout << "Are st1 and str2 equal?" << endl;
 	if (str1 != str2) {
 		cout << "str1 is not equal to str2 :(((" << endl;
 	}
@@ -125,10 +139,10 @@ int main() {
 				//OPERATOR OVERLOAD []
 	cout << "\n	---OPERATOR OVERLOAD [] OUTPUT---" << endl;
 	//Look for character at [1] in str2
-	cout << "The character at index 1 is: " << str2[1] << endl;
+	cout << "The character at index 1 of str1 is: " << str1[1] << endl;
 	//Out of bound checks
-	cout << "The character at index -1 (out of bounds): " << str2[-1] << endl;
-	cout << "The character at index 5 (out of bounds): " << str2[7] << endl;
+	cout << "The character at index -1 of str1 (out of bounds): " << str1[-1] << endl;
+	cout << "The character at index 7 of str1 (out of bounds): " << str1[7] << endl;
 
 				//OPERATOR OVERLOAD +
 	cout << "\n	---OPERATOR OVERLOAD + OUTPUT---" << endl;

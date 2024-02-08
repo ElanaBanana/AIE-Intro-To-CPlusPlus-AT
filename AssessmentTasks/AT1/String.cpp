@@ -188,29 +188,48 @@ int String::Find(int startIndex, const String& findString) {
 void String::Replace(const String& findString, const String& replaceString) {
 	int indexOfFound = Find(0, findString); //returns the index of start of string if found, else return -1
 
-	while (indexOfFound != -1) {
+	while (indexOfFound != -1) { //if there is an instance to replace
 		char* oldArray = theStringArray; //stores the original array before replacements
-		int newLength = Length() + replaceString.Length() - findString.Length();
+		int newLength = Length() + replaceString.Length() - findString.Length(); //len of new array = oldArray len + replaceString len - findstring len
 		char* newArray = new char[newLength+1]; //creates a new array to store the replacement + original array + 1 for null terminator
 		int currentIndex = 0; //this determins the current poisiton of the array that needs to be accessed
-		if (indexOfFound != currentIndex) {
-			for (currentIndex = 0; currentIndex < indexOfFound; currentIndex++) {
-				newArray[currentIndex] = oldArray[currentIndex]; //adds the not replaced values into the new array
+		if (indexOfFound != currentIndex) { //if there are oldArray values that need to be input before replacementstring
+			for (currentIndex = 0; currentIndex < indexOfFound; currentIndex++) { //for each value in old array, before index of found match
+				newArray[currentIndex] = oldArray[currentIndex]; //adds the original values into the new array
 			}
 		}
 		for (int j = 0; j < replaceString.Length(); j++) {
-			newArray[currentIndex + j] = replaceString.CStr()[j];
+			newArray[currentIndex + j] = replaceString.CStr()[j]; //add the replacementString into the new array
 		}
-		currentIndex += replaceString.Length();
-		for (int i = 0; currentIndex < newLength; i++, currentIndex++) {
+		currentIndex += replaceString.Length(); //update the current index to be after the last value of the replacementString
+		for (int i = 0; currentIndex < newLength; i++, currentIndex++) { //adds the remaining values from after all elements that were replaced, until end of oldArray is added
 			newArray[currentIndex] = oldArray[i + findString.Length()];
 		}
-		newArray[newLength] = '\0';
-		delete[] theStringArray;
-		theStringArray = newArray;
-		newArray = nullptr;
+		newArray[newLength] = '\0'; //adds the null terminator
+		delete[] theStringArray; //deleted the old value in theStringArray
+		theStringArray = newArray; //sets our newArray
+		newArray = nullptr; //we are done with newArray pointer
 		indexOfFound = Find(indexOfFound + replaceString.Length(), findString); //look for the next replacement from the end of the replaced string
 	}
+}
+
+void String::ReadFromConsole() {
+	//read multi line  input from console !
+	char inputArray[888]; //initialises an input arry buffer of 888 char
+	char* inputArrayPtr;
+	cout << "Please input your string: ";
+	cin.getline(inputArray, 888); //takes in inputArray up to 888 characters
+	//create a new dynamic array, length of the given input
+	int length = strlen(inputArray);
+	inputArrayPtr = new char[length+1];// +1 for null terminator
+	for (int i = 0; i < length; i++) {
+		inputArrayPtr[i] = inputArray[i];
+	}
+	inputArrayPtr[length] = '\0'; //adds num terminator
+	//delete old array
+	delete[] theStringArray;
+	theStringArray = inputArrayPtr; //sets our class to store new array
+	inputArrayPtr = nullptr; //we are done with pointer
 }
 
 void String::WriteToConsole() {
