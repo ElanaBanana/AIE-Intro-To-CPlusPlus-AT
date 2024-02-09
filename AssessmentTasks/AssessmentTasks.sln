@@ -7,12 +7,18 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AT1", "AT1\AT1.vcxproj", "{
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Ass1TaskBuild|x64 = Ass1TaskBuild|x64
+		Ass1TaskBuild|x86 = Ass1TaskBuild|x86
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A52522D1-45C0-41AF-816D-EA99EE36DFB7}.Ass1TaskBuild|x64.ActiveCfg = Debug|x64
+		{A52522D1-45C0-41AF-816D-EA99EE36DFB7}.Ass1TaskBuild|x64.Build.0 = Debug|x64
+		{A52522D1-45C0-41AF-816D-EA99EE36DFB7}.Ass1TaskBuild|x86.ActiveCfg = Ass1TaskBuild|Win32
+		{A52522D1-45C0-41AF-816D-EA99EE36DFB7}.Ass1TaskBuild|x86.Build.0 = Ass1TaskBuild|Win32
 		{A52522D1-45C0-41AF-816D-EA99EE36DFB7}.Debug|x64.ActiveCfg = Debug|x64
 		{A52522D1-45C0-41AF-816D-EA99EE36DFB7}.Debug|x64.Build.0 = Debug|x64
 		{A52522D1-45C0-41AF-816D-EA99EE36DFB7}.Debug|x86.ActiveCfg = Debug|Win32

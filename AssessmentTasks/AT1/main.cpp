@@ -33,7 +33,7 @@ int main() {
 	cout << "The character at index 1 is: " << str2.CharacterAt(1) << endl;
 	//Out of bound checks
 	cout << "The character at index -1 (out of bounds): " << str2.CharacterAt(-1) << endl;
-	cout << "The character at index 5 (out of bounds): " << str2.CharacterAt(7) << endl;
+	cout << "The character at index 7 (out of bounds): " << str2.CharacterAt(7) << endl;
 
 				//EQUAL TO
 	cout << "\n	---EQUAL TO OUTPUT---" << endl;
@@ -69,10 +69,12 @@ int main() {
 	cout << "str2 is: " << str2.CStr() << endl;
 	cout << "what we want to find: " << findMe.CStr() << endl;
 	int foundIndex = str2.Find(findMe);
-	if (foundIndex != -1) {
+	if (foundIndex != -1) 
+	{
 		cout << "We found it! The string starts at index: " << foundIndex << endl;
 	}
-	else {
+	else 
+	{
 		cout << "We didn't find the string..." << endl;
 	}
 
@@ -83,16 +85,19 @@ int main() {
 	cout << "what we want to find: " << findMe.CStr() << endl;
 	int foundIndexFrom9 = str2.Find(9, findMe);
 	int foundIndexFrom10 = str2.Find(10, findMe);
-	if (foundIndexFrom9 != -1) {
+	if (foundIndexFrom9 != -1) 
+	{
 		cout << "We found it! The string starts at index: " << foundIndex << endl;
 	}
-	else {
+	else 
+	{
 		cout << "We didn't find the string starting from index 9..." << endl;
 	}
 	if (foundIndexFrom10 != -1) {
 		cout << "We found it! The string starts at index: " << foundIndex << endl;
 	}
-	else {
+	else 
+	{
 		cout << "We didn't find the string starting from index 10..." << endl;
 	}
 				//REPLACE
@@ -125,14 +130,20 @@ int main() {
 	cout << "Are st1 and str3 equal?" << endl;
 	cout << "Str1: " << str1.CStr() << endl;
 	cout << "Srt3: " << str3.CStr() << endl;
-	if (str1 == str3) {
+	if (str1 == str3) 
+	{
 		cout << "str1 and str3 are equal!!!" << endl;
+	}
+	else 
+	{
+		cout << "The are not equal!!!" << endl;
 	}
 
 				//OPERATOR OVERLOAD !=
 	cout << "\n	---OPERATOR OVERLOAD != OUTPUT---" << endl;
 	cout << "Are st1 and str2 equal?" << endl;
-	if (str1 != str2) {
+	if (str1 != str2) 
+	{
 		cout << "str1 is not equal to str2 :(((" << endl;
 	}
 

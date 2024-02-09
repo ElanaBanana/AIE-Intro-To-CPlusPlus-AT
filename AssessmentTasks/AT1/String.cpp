@@ -2,8 +2,6 @@
 #include <iostream>
 using namespace std;
 
-char* joinStrings(const String& strLHS, const String& strRHS); //function to add two strings together
-
 String::String() {
 	theStringArray = new char[9] {'P', 'o', 't', 't', 'e', 'r','.',' ', '\0'};
 	//default constructor
@@ -14,7 +12,8 @@ String::String(const char* str) { //ASSUMING ARRAY PROVIDED HAS THE \0 ALREADY
 	//for me to put into an array of chars
 	theStringArray = new char[strlen(str)+1]; // initialises dynamic array of ints, 1 larger to allow for the null terminator
 
-	for (int i = 0; i < strlen(str); i++) {
+	for (int i = 0; i < strlen(str); i++) 
+	{
 		//for each value in the str array, add it to the local array
 		theStringArray[i] = str[i];
 	}
@@ -23,9 +22,10 @@ String::String(const char* str) { //ASSUMING ARRAY PROVIDED HAS THE \0 ALREADY
 }
 
 String::String(const String& otherString){ //otherString.CStr(); returns a pointer to a char array
-	//takes in a memory addresss to a string
-	int lenOfOther = otherString.Length(); // length of the provided string
-	theStringArray = new char[lenOfOther + 1]; // initialises dynamic array of ints, 1 larger to allow for the null terminator
+	// length of the provided string
+	int lenOfOther = otherString.Length();
+	// initialises dynamic array of ints, 1 larger to allow for the null terminator
+	theStringArray = new char[lenOfOther + 1]; 
 
 	for (int i = 0; i < lenOfOther; i++) {
 		//for each value in other string, place in local array
@@ -46,7 +46,8 @@ size_t String::Length() const {
 
 char String::CharacterAt(int index) {
 	//check if the index is not range, return '\0'
-	if (index < 0 || index >= Length()) { 
+	if (index < 0 || index >= Length()) 
+	{ 
 		//less than zero, or greater than or eq too Length of array
 		return '\0';
 	}
@@ -55,10 +56,13 @@ char String::CharacterAt(int index) {
 
 bool String::EqualTo(const String& other) const{
 	//first check if the length of both ararys is equal
-	if (Length() == other.Length()) {
-		for (int i = 0; i < Length(); i++) {
+	if (Length() == other.Length()) 
+	{
+		for (int i = 0; i < Length(); i++) 
+		{
 			//for each element in the arrays, compare values
-			if (theStringArray[i] != other.CStr()[i]) {
+			if (theStringArray[i] != other.CStr()[i]) 
+			{
 				//if any element does not match
 				return false;
 			}
@@ -69,49 +73,46 @@ bool String::EqualTo(const String& other) const{
 	return false; //default value
 }
 
-char* temp; //pointer to temp dynamic array
 
 void String::Append(const String& str) {
 	//append the two strings
-	char* appended = joinStrings(theStringArray, str);
-	//delete old value stored in class pointer
-	delete[] theStringArray;
-	//finally set the class pointer to the new appended array
-	theStringArray = appended;
-	//set the temp pointer to nullptr as we are done with it
-	temp = nullptr;
+	joinStrings(theStringArray, str);
 }
 
 void String::Prepend(const String& str) {
 	//prepend calls the join strings function but opposite to the append function
-		//append the two strings
-	char* prepended = joinStrings(str, theStringArray);
-	//delete old value stored in class pointer
-	delete[] theStringArray;
-	//finally set the class pointer to the new appended array
-	theStringArray = prepended;
-	//set the temp pointer to nullptr to avoid leaving a hanging pointer
-	temp = nullptr;
+	//prepend the two strings
+	joinStrings(str, theStringArray);
 }
 
-char* joinStrings(const String& strLHS, const String& strRHS) {//function joins two strings the RHS is added the the end of the LHS
+void String::joinStrings(const String& strLHS, const String& strRHS) {//function joins two strings the RHS is added the the end of the LHS
+	//pointer to temp dynamic array
+	char* temp; 
 	//create a new char array the length of both arrays combine
 	int newLen = strLHS.Length() + strRHS.Length(); // the size of the new array 
 	//temp pointer for new string to a new char array of size newLen
 	temp = new char[newLen+1]; //+1 extra space for null terminator
+	
 	//for each value in lhs add to new array
-	for (int i = 0; i < strLHS.Length(); i++) {
+	for (int i = 0; i < strLHS.Length(); i++) 
+	{
 		temp[i] = strLHS.CStr()[i];
 	}
 	//for each value in rhs append to the end of previous string
-	for (int i = strLHS.Length(), j = 0; i < newLen; i++, j++) { //start where last for loop ended, until the end of the newLen
+	for (int i = strLHS.Length(), j = 0; i < newLen; i++, j++) 
+	{ //start where last for loop ended, until the end of the newLen
 		//i = the first index after the end of first append
 		//j is used to keep track of the index being accessed from the array
 		//keep appending until i < length of second string + the starting index -1, which is for the null terminator
 		temp[i] = strRHS.CStr()[j];
 	}
 	temp[newLen] = '\0'; //add null terminator to the last index of array
-	return temp; //returns the pointer to the new string
+	//delete old value stored in class pointer
+	delete[] theStringArray;
+	//finally set the class pointer to the new appended array
+	theStringArray = temp;
+	//set the temp pointer to nullptr to avoid leaving a hanging pointer
+	temp = nullptr;
 }
 
 const char* String::CStr() const {
@@ -120,11 +121,14 @@ const char* String::CStr() const {
 
 void String::ToLower() {
 	//first checks if the ascii character is already lowercase
-	for (int i = 0; i < Length(); i++) {
-		if (theStringArray[i] >= 97 && theStringArray[i] <= 122) { //is it already lowercase?
+	for (int i = 0; i < Length(); i++) 
+	{
+		if (theStringArray[i] >= 97 && theStringArray[i] <= 122) 
+		{ //is it already lowercase?
 			continue;
 		}
-		if (theStringArray[i] >= 65 && theStringArray[i] <= 90) { //is it uppercase character?
+		if (theStringArray[i] >= 65 && theStringArray[i] <= 90) 
+		{ //is it uppercase character?
 			theStringArray[i] = char(theStringArray[i] + 32); // convert to lowercase version of char by adding 32
 		}
 	}
@@ -133,11 +137,14 @@ void String::ToLower() {
 
 void String::ToUpper() {
 	//first checks if the ascii character is already uppercase
-	for (int i = 0; i < Length(); i++) {
-		if (theStringArray[i] >= 65 && theStringArray[i] <= 90) { //is it already uppercase?
+	for (int i = 0; i < Length(); i++) 
+	{
+		if (theStringArray[i] >= 65 && theStringArray[i] <= 90) 
+		{ //is it already uppercase?
 			continue;
 		}
-		if (theStringArray[i] >= 97 && theStringArray[i] <= 122) { //is it lowercase character? else dont convet
+		if (theStringArray[i] >= 97 && theStringArray[i] <= 122) 
+		{ //is it lowercase character? else dont convet
 			theStringArray[i] = char(theStringArray[i] - 32); // convert to lowercase version of char by adding 32
 		}
 	}
@@ -158,16 +165,23 @@ int String::Find(int startIndex, const String& findString) {
 
 	int searchLength = findString.Length(); //the length of the string that we want to find
 	const char* searchArray = findString.CStr(); //the string we want to find
-	for (int i = startIndex, j = 0; i < Length(); i++) { //for each value in theStringArray from starting index
+
+	for (int i = startIndex, j = 0; i < Length(); i++) 
+	{ //for each value in theStringArray from starting index
 		//check if it is still possible for theStringArray to contain the search value
-		if (Length() - i >= searchLength) { //if the remaining elements in the StringArray are >= the length of the search string, continue search
+		if (Length() - i >= searchLength) 
+		{ //if the remaining elements in the StringArray are >= the length of the search string, continue search
 			j = 0; //reset back to first element of findString
-			if (theStringArray[i] == searchArray[j]) { // if a match is found the start of findString and theStringArray
-				for (j = 1; j < searchLength; j++) { //if a match was found, check the proceeding values for match
+			if (theStringArray[i] == searchArray[j]) 
+			{ // if a match is found the start of findString and theStringArray
+				for (j = 1; j < searchLength; j++) 
+				{ //if a match was found, check the proceeding values for match
 					//j is the next value in the findString array after a match is found (starting from index 1)
 					//i + j is the next value in theStringArray after a match is found
-					if (theStringArray[i+j] == searchArray[j]) {
-						if (j + 1 >= searchLength) { // if we have reached the end of the searchArray
+					if (theStringArray[i+j] == searchArray[j]) 
+					{
+						if (j + 1 >= searchLength) 
+						{ // if we have reached the end of the searchArray
 							return i; //in this case, i triggers the first match and will hold the value of the starting index for match
 						}
 					}
@@ -188,48 +202,74 @@ int String::Find(int startIndex, const String& findString) {
 void String::Replace(const String& findString, const String& replaceString) {
 	int indexOfFound = Find(0, findString); //returns the index of start of string if found, else return -1
 
-	while (indexOfFound != -1) { //if there is an instance to replace
-		char* oldArray = theStringArray; //stores the original array before replacements
-		int newLength = Length() + replaceString.Length() - findString.Length(); //len of new array = oldArray len + replaceString len - findstring len
-		char* newArray = new char[newLength+1]; //creates a new array to store the replacement + original array + 1 for null terminator
-		int currentIndex = 0; //this determins the current poisiton of the array that needs to be accessed
-		if (indexOfFound != currentIndex) { //if there are oldArray values that need to be input before replacementstring
-			for (currentIndex = 0; currentIndex < indexOfFound; currentIndex++) { //for each value in old array, before index of found match
+	while (indexOfFound != -1) 
+	{ //if there is an instance to replace
+		//stores the original array before replacements
+		char* oldArray = theStringArray; 
+		//len of new array = oldArray len + replaceString len - findstring len
+		int newLength = Length() + replaceString.Length() - findString.Length(); 
+		//creates a new array to store the replacement + original array + 1 for null terminator
+		char* newArray = new char[newLength+1]; 
+		//this determins the current poisiton of the array that needs to be accessed
+		int currentIndex = 0; 
+
+		if (indexOfFound != currentIndex) 
+		{ //if there are oldArray values that need to be input before replacementstring
+			for (currentIndex = 0; currentIndex < indexOfFound; currentIndex++) 
+			{ //for each value in old array, before index of found match
 				newArray[currentIndex] = oldArray[currentIndex]; //adds the original values into the new array
 			}
 		}
-		for (int j = 0; j < replaceString.Length(); j++) {
-			newArray[currentIndex + j] = replaceString.CStr()[j]; //add the replacementString into the new array
+		for (int j = 0; j < replaceString.Length(); j++) 
+		{
+			//add the replacementString into the new array
+			newArray[currentIndex + j] = replaceString.CStr()[j]; 
 		}
-		currentIndex += replaceString.Length(); //update the current index to be after the last value of the replacementString
-		for (int i = 0; currentIndex < newLength; i++, currentIndex++) { //adds the remaining values from after all elements that were replaced, until end of oldArray is added
+
+		//update the current index to be after the last value of the replacementString
+		currentIndex += replaceString.Length();
+
+		for (int i = 0; currentIndex < newLength; i++, currentIndex++) 
+		{ //adds the remaining values from after all elements that were replaced, until end of oldArray is added
 			newArray[currentIndex] = oldArray[i + findString.Length()];
 		}
-		newArray[newLength] = '\0'; //adds the null terminator
-		delete[] theStringArray; //deleted the old value in theStringArray
-		theStringArray = newArray; //sets our newArray
-		newArray = nullptr; //we are done with newArray pointer
-		indexOfFound = Find(indexOfFound + replaceString.Length(), findString); //look for the next replacement from the end of the replaced string
+		//adds the null terminator
+		newArray[newLength] = '\0';
+		//deleted the old value in theStringArray
+		delete[] theStringArray;
+		//sets our newArray
+		theStringArray = newArray;
+		//we are done with newArray pointer
+		newArray = nullptr;
+		//look for the next replacement from the end of the replaced string
+		indexOfFound = Find(indexOfFound + replaceString.Length(), findString);
 	}
 }
 
 void String::ReadFromConsole() {
 	//read multi line  input from console !
-	char inputArray[888]; //initialises an input arry buffer of 888 char
+	//initialises an input arry buffer of 888 char
+	char inputArray[888];
 	char* inputArrayPtr;
 	cout << "Please input your string: ";
-	cin.getline(inputArray, 888); //takes in inputArray up to 888 characters
+	//takes in inputArray up to 888 characters
+	cin.getline(inputArray, 888);
 	//create a new dynamic array, length of the given input
 	int length = strlen(inputArray);
 	inputArrayPtr = new char[length+1];// +1 for null terminator
-	for (int i = 0; i < length; i++) {
+
+	for (int i = 0; i < length; i++) 
+	{
 		inputArrayPtr[i] = inputArray[i];
 	}
-	inputArrayPtr[length] = '\0'; //adds num terminator
+	//adds num terminator
+	inputArrayPtr[length] = '\0';
 	//delete old array
 	delete[] theStringArray;
-	theStringArray = inputArrayPtr; //sets our class to store new array
-	inputArrayPtr = nullptr; //we are done with pointer
+	//sets our class to store new array
+	theStringArray = inputArrayPtr; 
+	//we are done with pointer
+	inputArrayPtr = nullptr;
 }
 
 void String::WriteToConsole() {
@@ -237,15 +277,18 @@ void String::WriteToConsole() {
 }
 
 bool String::operator ==(const String& other) { //overriding the equality operator
-	if (EqualTo(other)) {//if the two strings are equal
+	if (EqualTo(other)) 
+	{//if the two strings are equal
 		return true;
 	}
 	return false;
 }
 
 bool String::operator !=(const String& other) { //overriding the not equal to operator
-	if (EqualTo(other) == false) { //checks if they are not equal
-		return true; //returns true if equality check returns false
+	if (EqualTo(other) == false) 
+	{ //checks if they are not equal
+		 //returns true if equality check returns false
+		return true;
 	}
 	return false;//confusing I know
 }
@@ -256,6 +299,7 @@ void String::operator =(const String& str) {
 	//initalise new array with length of string to be added
 	int len = str.Length();
 	theStringArray = new char[len+1]; //+1 for the null terminator
+
 	for (int i = 0; i < len; i++) {
 		theStringArray[i] = str.CStr()[i];
 	}
@@ -269,12 +313,12 @@ char String::operator [](int index) { //overriding the [] operator
 }
 
 String String::operator+(const String& other) {
-	String newString(joinStrings(theStringArray, other)); //Julian is so smart omg
-	return newString; //returns the new string concatanation
+	joinStrings(theStringArray, other); //Julian is so smart omg
+	return theStringArray; //returns the new string concatanation
 }
 
 void String::operator +=(const String& other){
-	theStringArray = joinStrings(theStringArray, other);
+	joinStrings(theStringArray, other);
 	return; 
 }
 

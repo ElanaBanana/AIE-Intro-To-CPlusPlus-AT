@@ -33,6 +33,8 @@ public:
 	String operator+(const String& other); //return a pointer to the new concatantion of the two strings
 	void operator+=(const String& other);  //sets the value before += to become the concatanation of two strings
 private:
+	//I fixed it Julian :D
+	void joinStrings(const String& strLHS, const String& strRHS); //function to add two strings together
 	char* theStringArray; //pointer to the char array containing the class string
 };
 
