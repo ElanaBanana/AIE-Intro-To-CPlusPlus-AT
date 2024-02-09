@@ -251,7 +251,6 @@ void String::ReadFromConsole() {
 	//initialises an input arry buffer of 888 char
 	char inputArray[888];
 	char* inputArrayPtr;
-	cout << "Please input your string: ";
 	//takes in inputArray up to 888 characters
 	cin.getline(inputArray, 888);
 	//create a new dynamic array, length of the given input
