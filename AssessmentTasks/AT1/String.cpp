@@ -2,6 +2,11 @@
 #include <iostream>
 using namespace std;
 
+/*
+Elana Parnis
+07/02/2024
+*/
+
 String::String() {
 	theStringArray = new char[9] {'P', 'o', 't', 't', 'e', 'r','.',' ', '\0'};
 	//default constructor

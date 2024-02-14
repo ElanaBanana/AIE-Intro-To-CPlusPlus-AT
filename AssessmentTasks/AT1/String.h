@@ -1,6 +1,11 @@
 #ifndef STRING_H
 #define STRING_H
 
+/*
+Elana Parnis
+07/02/2024
+*/
+
 //const before the function means it is returning a const value (cant be changed)
 //const after the function, means it cannot modify the the objects state
 
