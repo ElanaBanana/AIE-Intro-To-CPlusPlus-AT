@@ -187,6 +187,28 @@ int main() {
 			cout << "str1 is not equal to str2 :(((" << endl;
 		}
 
+					//OPERATOR OVERLOAD > & <
+		cout << "\n	---OPERATOR OVERLOAD < OUTPUT---" << endl;
+		cout << "Str1: " << str1.CStr() << endl;
+		cout << "Srt3: " << str3.CStr() << endl;
+		cout << "Does str1 come before str3 alphabetically?" << endl;
+		if (str1 < str3) {
+			cout << "Yes it does!" << endl;
+		}
+		else
+		{
+			cout << "No it doesn't!" << endl;
+		}
+		cout << "\n	---OPERATOR OVERLOAD > OUTPUT---" << endl;
+		cout << "Does str1 come after str3 alphabetically?" << endl;
+		if (str1 > str3) {
+			cout << "Yes it does!" << endl;
+		}
+		else
+		{
+			cout << "No it doesn't!" << endl;
+		}
+
 					//OPERATOR OVERLOAD []
 		cout << "\n	---OPERATOR OVERLOAD [] OUTPUT---" << endl;
 		//Look for character at [1] in str2

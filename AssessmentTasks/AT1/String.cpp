@@ -311,6 +311,53 @@ void String::operator =(const String& str) {
 	theStringArray[len] = '\0';
 }
 
+bool String::operator <(const String& other) { //returns true if LHS comes before RHS
+	return alphaComparison(theStringArray, other);
+}
+
+bool String::operator >(const String& other) { //returns
+	return alphaComparison(other, theStringArray);
+}
+
+bool String::alphaComparison(const String& strLHS, const String& strRHS) { //does LHS come before RHS is alphabet
+	int len = 0;
+	if (strLHS.Length() < strRHS.Length()) //find the shortest len
+	{
+		len = strLHS.Length();
+	}
+	else
+	{
+		len = strRHS.Length();
+	}
+	for (int i = 0; i < len; i++)
+	{
+		//if LHS[i] == RHS[i] keep checking next value
+ 		if (strLHS.CStr()[i] == strRHS.CStr()[i]) {
+			continue;
+		}
+		else
+		{
+			//if they are not the same, check if the value of LHS is less than RHS
+			//is LHS < less numerically, it comes first in the alphabet
+			if (strLHS.CStr()[i] < strRHS.CStr()[i]) {
+				return true; 
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	if (strLHS.Length() < strRHS.Length()) //if LHS was shorter, it comes first alphabetically
+	{
+		if (strLHS.Length() == strRHS.Length()) { //if they are the same length (and same string, return false)
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+
 char String::operator [](int index) { //overriding the [] operator
 	//finds the character at specific index and returns the char, else return null terminator
 	return CharacterAt(index);

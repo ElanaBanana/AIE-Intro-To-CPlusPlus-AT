@@ -31,15 +31,18 @@ public:
 	void ReadFromConsole(); // get input from the console and store the result
 	void WriteToConsole(); // write the current string to the console
 public:
-	bool operator==(const String& other); //returns true if lhs == rhs
-	bool operator!=(const String& other); // returns true if lhs != rhs 
-	void operator=(const String& str); //replaces the characters in teh lhs with the characters in rhs
-	char operator[](int index); //returns the character located at pos provided
-	String operator+(const String& other); //return a pointer to the new concatantion of the two strings
-	void operator+=(const String& other);  //sets the value before += to become the concatanation of two strings
+	bool operator ==(const String& other); //returns true if lhs == rhs
+	bool operator !=(const String& other); // returns true if lhs != rhs 
+	void operator =(const String& str); //replaces the characters in teh lhs with the characters in rhs
+	bool operator <(const String& other); //returns true if the lhs comes before rhs in the alphabet
+	bool operator >(const String& other); //returns true if the lhs comes after rhs in the alphabet
+	char operator [](int index); //returns the character located at pos provided
+	String operator +(const String& other); //return a pointer to the new concatantion of the two strings
+	void operator +=(const String& other);  //sets the value before += to become the concatanation of two strings
 private:
 	//I fixed it Julian :D
 	void joinStrings(const String& strLHS, const String& strRHS); //function to add two strings together
+	bool alphaComparison(const String& strLHS, const String& strRHS); // returns whether the LHS comes before the RHS is the alphabet
 	char* theStringArray; //pointer to the char array containing the class string
 };
 
