@@ -218,9 +218,14 @@ int main() {
 		cout << "The character at index 7 of str1 (out of bounds): " << str1[7] << endl;
 
 					//OPERATOR OVERLOAD +
+		cout << "Str1: " << str1.CStr() << endl;
+		cout << "Srt3: " << str3.CStr() << endl;
 		cout << "\n	---OPERATOR OVERLOAD + OUTPUT---" << endl;
 		String newString(str1 + str3);
-		cout << "str1 + str3 is: " << newString.CStr() << endl;
+		cout << "newString = str1 + str3 is: " << newString.CStr() << endl;
+		cout << "Str1: " << str1.CStr() << endl;
+		cout << "Srt3: " << str3.CStr() << endl;
+		cout << "See Julian! They don't change :D" << endl;
 
 					//OPERATOR OVERLOAD +=
 		cout << "\n	---OPERATOR OVERLOAD += OUTPUT---" << endl;

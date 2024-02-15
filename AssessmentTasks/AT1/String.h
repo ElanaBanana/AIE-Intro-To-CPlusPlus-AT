@@ -37,7 +37,7 @@ public:
 	bool operator <(const String& other); //returns true if the lhs comes before rhs in the alphabet
 	bool operator >(const String& other); //returns true if the lhs comes after rhs in the alphabet
 	char operator [](int index); //returns the character located at pos provided
-	String operator +(const String& other); //return a pointer to the new concatantion of the two strings
+	char* operator +(const String& other); //return a pointer to the new concatantion of the two strings
 	void operator +=(const String& other);  //sets the value before += to become the concatanation of two strings
 private:
 	//I fixed it Julian :D

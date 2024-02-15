@@ -236,7 +236,7 @@ void String::Replace(const String& findString, const String& replaceString) {
 
 		for (int i = 0; currentIndex < newLength; i++, currentIndex++) 
 		{ //adds the remaining values from after all elements that were replaced, until end of oldArray is added
-			newArray[currentIndex] = oldArray[i + findString.Length()];
+			newArray[currentIndex] = oldArray[indexOfFound + findString.Length()];
 		}
 		//adds the null terminator
 		newArray[newLength] = '\0';
@@ -363,14 +363,28 @@ char String::operator [](int index) { //overriding the [] operator
 	return CharacterAt(index);
 }
 
-String String::operator+(const String& other) {
+char* String::operator+(const String& other) {
+	//copy old theStringArray to holdingArray
+	int len = Length();
+	char* holdingArray = new char[Length() + 1];
+	strcpy_s(holdingArray, Length() + 1, theStringArray);
+
+	//join the two string together
 	joinStrings(theStringArray, other); //Julian is so smart omg
-	return theStringArray; //returns the new string concatanation
+
+	//copy the new array to storedarray
+	len = Length(); // new length() of theString array
+	char* appendedArray = new char[Length() + 1];
+	strcpy_s(appendedArray, Length() + 1, theStringArray);
+
+	//reset the old array
+	theStringArray = holdingArray;
+
+	//return the new array
+	return appendedArray; //returns the new string concatanation
 }
 
 void String::operator +=(const String& other){
 	joinStrings(theStringArray, other);
 	return; 
 }
-
-
