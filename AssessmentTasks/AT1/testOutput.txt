@@ -1,0 +1,60 @@
+text lol 222 NEW
+Date: 16/2/2024 Time: 19:84:10 Success Rate: 
+Date: 16/2/2024 Time: 14:84:44 Success Rate: 
+Date: 16/2/2024 Time: 15:58:14 Success Rate: 
+Date: 16/2/2024 Time: 15:67:31 Success Rate: 0%
+Date: 16/2/2024 Time: 15:72:41 Success Rate: 0%
+Date: 16/2/2024 Time: 16:54:25 Success Rate: 0.1%
+Date: 16/2/2024 Time: 16:55:33 Success Rate: 10%
+Date: 16/2/2024 Time: 16:55:54 Success Rate: 10%
+Date: 16/2/2024 Time: 16:56:21 Success Rate: 10%
+Date: 16/2/2024 Time: 16:57:58 Success Rate: 0%
+Date: 16/2/2024 Time: 16:58:18 Success Rate: 0%
+Date: 16/2/2024 Time: 16:58:41 Success Rate: 10%
+Date: 16/2/2024 Time: 16:61:24 Success Rate: 0.1%
+Date: 16/2/2024 Time: 16:64:55 Success Rate: 9.5%
+Date: 16/2/2024 Time: 16:65:8 Success Rate: 9.52%
+Date: 16/2/2024 Time: 16:74:32 Success Rate: 9.52%
+Test 1 LengthSuccessful
+Test 2 CharacterAtSuccessful
+Test 3 EqualToFailed
+Test 4 AppendFailed
+Test 5 PrependFailed
+Test 6 CStrFailed
+Test 7 ToLowerFailed
+Test 8 ToUpperFailed
+Test 9 FindFailed
+Test 10 FindAtIndexFailed
+Test 11 ReplaceFailed
+Test 12 ReadFromConsoleFailed
+Test 13 WriteToConsoleFailed
+Test 14 Operator==Failed
+Test 15 Operator!=Failed
+Test 16 Operator=Failed
+Test 17 Operator<Failed
+Test 18 Operator>Failed
+Test 19 Operator[]Failed
+Test 20 Operator+Failed
+Test 21 Operator+=Failed
+Date: 16/2/2024 Time: 16:75:10 Success Rate: 9.52%
+Test 1 Length Successful
+Test 2 CharacterAt Successful
+Test 3 EqualTo Failed
+Test 4 Append Failed
+Test 5 Prepend Failed
+Test 6 CStr Failed
+Test 7 ToLower Failed
+Test 8 ToUpper Failed
+Test 9 Find Failed
+Test 10 FindAtIndex Failed
+Test 11 Replace Failed
+Test 12 ReadFromConsole Failed
+Test 13 WriteToConsole Failed
+Test 14 Operator== Failed
+Test 15 Operator!= Failed
+Test 16 Operator= Failed
+Test 17 Operator< Failed
+Test 18 Operator> Failed
+Test 19 Operator[] Failed
+Test 20 Operator+ Failed
+Test 21 Operator+= Failed
