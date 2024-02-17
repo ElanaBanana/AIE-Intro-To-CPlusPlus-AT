@@ -42,7 +42,7 @@ public:
 private:
 	//I fixed it Julian :D
 	void joinStrings(const String& strLHS, const String& strRHS); //function to add two strings together
-	bool alphaComparison(const String& strLHS, const String& strRHS); // returns whether the LHS comes before the RHS is the alphabet
+	bool alphabetComparison(const String& strLHS, const String& strRHS); // returns whether the LHS comes before the RHS is the alphabet
 	char* theStringArray; //pointer to the char array containing the class string
 };
 

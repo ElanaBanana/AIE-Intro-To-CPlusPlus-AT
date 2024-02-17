@@ -312,14 +312,14 @@ void String::operator =(const String& str) {
 }
 
 bool String::operator <(const String& other) { //returns true if LHS comes before RHS
-	return alphaComparison(theStringArray, other);
+	return alphabetComparison(theStringArray, other);
 }
 
 bool String::operator >(const String& other) { //returns
-	return alphaComparison(other, theStringArray);
+	return alphabetComparison(other, theStringArray);
 }
 
-bool String::alphaComparison(const String& strLHS, const String& strRHS) { //does LHS come before RHS is alphabet
+bool String::alphabetComparison(const String& strLHS, const String& strRHS) { //does LHS come before RHS alphabetically
 	int len = 0;
 	if (strLHS.Length() < strRHS.Length()) //find the shortest len
 	{

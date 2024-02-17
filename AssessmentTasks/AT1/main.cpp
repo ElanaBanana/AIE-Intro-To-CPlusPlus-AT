@@ -301,6 +301,8 @@ int main() {
 		//string Time = to_string(buff.tm_hour) + ":" + to_string(30 + buff.tm_min) + ":" + to_string(buff.tm_sec);
 		//outputFile << "Date: " << Date << " Time: " << Time << " Success Rate: " << endl;
 
+		cout << "Writing tests to file..." << endl;
+
 		//without using strings
 		outputFile << "Date: " << buff.tm_mday << "/" << buff.tm_mon + 1 << "/" << buff.tm_year + 1900;
 		outputFile << " Time: " << buff.tm_hour << ":" << 30 + buff.tm_min << ":" << buff.tm_sec;
@@ -335,10 +337,12 @@ int TakeInput() { //function to make sure the input is only a 1 or 2 (intInput, 
 		inputNum = intInput();
 		if (inputNum == 1 || inputNum == 2 || inputNum == 3)
 		{
+			correctInput = true;
 			return inputNum;
 		}
 		cout << "It needs to be a 1 or 2 !" << endl;
 	}
+	return inputNum;
 }
 
 void testFunctions(int* passArray) {
@@ -359,22 +363,116 @@ void testFunctions(int* passArray) {
 		passArray[1] = 1;
 	}
 				//equalTo - test 2
-				//append - test 3	
+	//test2 contains 'Awesome Sauce! '
+	bool test2Check = test2.EqualTo("Awesome Sauce! ");
+	if (test2Check == true) {
+		passArray[2] = 1;
+	}
+				//append - test 3
+	//Adding Julien to Awesome Sauce! 
+	test2.Append(test3);
+	cout << test2.CStr() << endl;
+	if (strcmp(test2.CStr(), "Awesome Sauce! Julien") == 0) {
+		passArray[3] = 1;
+	}
 				//prepend - test 4
+	test2.Prepend(" ");
+	test2.Prepend(test3);
+	if (strcmp(test2.CStr(), "Julien Awesome Sauce! Julien") == 0) {
+		passArray[4] = 1;
+	}
 				//CStr - test 5
+	//should return 'King Kong'
+	if (strcmp(test1.CStr(), "King Kong") == 0) {
+		passArray[5] = 1;
+	}
 				//ToLower - test 6	
-				//ToUpper - test 7	
+	//test1 should be 'king kong'
+	test1.ToLower();
+	if (strcmp(test1.CStr(), "king kong") == 0) {
+		passArray[6] = 1;
+	}
+				//ToUpper - test 7
+	//test1 should be 'KING KONG'
+	test1.ToUpper();
+	if (strcmp(test1.CStr(), "KING KONG") == 0) {
+		passArray[7] = 1;
+	}
 				//Find - test 8
-				//FindAtIndex - test 9	
+	//find en in Julien, should be index 4
+	int test8Find = test3.Find("en");
+	if (test8Find == 4) {
+		passArray[8] = 1;
+	}
+				//FindAtIndex - test 9
+	//Find 'K' in 'King Kong', from index 3 onwards, should be index 5
+	int test9Find = test1.Find(3, "K");
+	if (test9Find == 5) {
+		passArray[9] = 1;
+	}
 				//Replace - test 10
+	//replace Kong in test1 with Julien from test3
+	test1.Replace("KONG", test3);
+	if (strcmp(test1.CStr(), "KING Julien") == 0) {
+		passArray[10] = 1;
+	}
 				//ReadFromConsole - test 11
+	//take in user input and check new stored value
+	bool correctInput = false;
+	String userInput;
+	while (correctInput == false)
+	{
+		cout << "Please enter the Chinese zodiac for 2024: " << endl;
+		userInput.ReadFromConsole();
+		//if the user enters Dragon
+		//convert the input to all lower case to check if input is correct
+		userInput.ToLower();
+		if (strcmp(userInput.CStr(), "dragon") == 0)
+		{
+			correctInput = true;
+			passArray[11] = 1;
+			break;
+		}
+		cout << "That's not right! The answer is: Dragon\n" << endl;
+	}
 				//WriteToConsole - test 12
+	//not sure how to test this oop
+	// Julian help plz
+	
 				//operator== - test 13
+	//compare the user into to expected value of "dragon" using ==
+	//expected output of true (they are equal)
+	if (userInput == "dragon") {
+		passArray[13] = 1;
+	 }
 				//operator!= - test 14
-				//operator= - test 15	
+	//compare the user into to expected value of "dragon" using ==
+	//expected output of true (they are not equal)
+	if (userInput != test1) {
+		passArray[14] = 1;
+	}
+				//operator= - test 15
+	test1 = "King Julien";
+	//change test1 from KING Julien to King Julien
+	if (strcmp(test1.CStr(), "King Julien")) {
+		passArray[15] = 1;
+	}
 				//operator< - test 16
+	//'Julien' comes before 'King Julien'
+	if (test3 < test1) {
+		passArray[16] = 1;
+	}
 				//operator> - test 17
+	//'dragon' comes after 'King Julien' (due to capital letters coming first)
+	if (userInput > test1) {
+		passArray[17] = 1;
+	}
 				//operator[] - test 18	
+	//returns the char at index 1, should return u from 'Julien'
+	if (test3[1] == 'u') {
+		passArray[18] = 1;
+	}
 				//operator+ - test 19
+	
 				//operator+= - test 20
 }
