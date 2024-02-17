@@ -178,20 +178,28 @@ int String::Find(int startIndex, const String& findString) {
 		{ //if the remaining elements in the StringArray are >= the length of the search string, continue search
 			j = 0; //reset back to first element of findString
 			if (theStringArray[i] == searchArray[j]) 
-			{ // if a match is found the start of findString and theStringArray
-				for (j = 1; j < searchLength; j++) 
-				{ //if a match was found, check the proceeding values for match
-					//j is the next value in the findString array after a match is found (starting from index 1)
-					//i + j is the next value in theStringArray after a match is found
-					if (theStringArray[i+j] == searchArray[j]) 
-					{
-						if (j + 1 >= searchLength) 
-						{ // if we have reached the end of the searchArray
-							return i; //in this case, i triggers the first match and will hold the value of the starting index for match
+			{ // if a match is found start searching for all remaining matches
+				//If the searchString is only 1 character long
+				if (searchLength == 1) 
+				{
+					return i; //return the index of found match
+				}
+				else
+				{ //if the searchString length is longer than 1 character, search for remaining characters
+					for (j = 1; j < searchLength; j++)
+					{ //if a match was found, check the proceeding values for match
+						//j is the next value in the findString array after a match is found (starting from index 1)
+						//i + j is the next value in theStringArray after a match is found
+						if (theStringArray[i + j] == searchArray[j])
+						{
+							if (j + 1 >= searchLength)
+							{ // if we have reached the end of the searchArray
+								return i; //in this case, i triggers the first match and will hold the value of the starting index for match
+							}
 						}
-					}
-					else {
-						continue; //if not a match, return to search
+						else {
+							break; //if not a match, return to search for next initial match
+						}
 					}
 				}
 			}
@@ -204,7 +212,7 @@ int String::Find(int startIndex, const String& findString) {
 	return -1; //if there is no match found
 }
 
-void String::Replace(const String& findString, const String& replaceString) {
+void String::Replace(const String& findString, const String& replaceString) { // replace all instances of findString with replaceString
 	int indexOfFound = Find(0, findString); //returns the index of start of string if found, else return -1
 
 	while (indexOfFound != -1) 
@@ -236,7 +244,8 @@ void String::Replace(const String& findString, const String& replaceString) {
 
 		for (int i = 0; currentIndex < newLength; i++, currentIndex++) 
 		{ //adds the remaining values from after all elements that were replaced, until end of oldArray is added
-			newArray[currentIndex] = oldArray[indexOfFound + findString.Length()];
+			//accessing elements from oldArray from position of replaced string + how many values were replaced + i (to increment through all the values)
+			newArray[currentIndex] = oldArray[indexOfFound + findString.Length() + i];
 		}
 		//adds the null terminator
 		newArray[newLength] = '\0';

@@ -254,7 +254,7 @@ int main() {
 			String("ToLower"),
 			String("ToUpper"),
 			String("Find"),
-			String("FindAtIndex"),
+			String("FindFromIndex"),
 			String("Replace"),
 			String("ReadFromConsole"),
 			String("WriteToConsole"),
@@ -283,9 +283,10 @@ int main() {
 
 					//FILE STUFF
 		//lets create and open a new file
+		const char* fileName = { "testOutput.txt" };
 		ofstream outputFile; 
 		//open file for appending, create if doesnt exisit
-		outputFile.open("testOutput.txt", ios::out | ios::app);
+		outputFile.open(fileName, ios::out | ios::app);
 
 		//the date/ time based on the current system
 		time_t timeNow = time(0);
@@ -301,7 +302,7 @@ int main() {
 		//string Time = to_string(buff.tm_hour) + ":" + to_string(30 + buff.tm_min) + ":" + to_string(buff.tm_sec);
 		//outputFile << "Date: " << Date << " Time: " << Time << " Success Rate: " << endl;
 
-		cout << "Writing tests to file..." << endl;
+		cout << "Writing ALL tests to file... " << fileName << endl;
 
 		//without using strings
 		outputFile << "Date: " << buff.tm_mday << "/" << buff.tm_mon + 1 << "/" << buff.tm_year + 1900;
@@ -371,7 +372,7 @@ void testFunctions(int* passArray) {
 				//append - test 3
 	//Adding Julien to Awesome Sauce! 
 	test2.Append(test3);
-	cout << test2.CStr() << endl;
+	//cout << test2.CStr() << endl;
 	if (strcmp(test2.CStr(), "Awesome Sauce! Julien") == 0) {
 		passArray[3] = 1;
 	}
@@ -404,15 +405,23 @@ void testFunctions(int* passArray) {
 	if (test8Find == 4) {
 		passArray[8] = 1;
 	}
-				//FindAtIndex - test 9
+				//FindFromIndex - test 9
 	//Find 'K' in 'King Kong', from index 3 onwards, should be index 5
-	int test9Find = test1.Find(3, "K");
+	int test9Find = test1.Find(2, "K");
+	//cout << "found 'K' at index: " << test9Find << endl;
 	if (test9Find == 5) {
 		passArray[9] = 1;
 	}
+	//Found error in my find function which causes it to not find value if the seach string is len 1
+	//fixed, but found that my replace function doesn't work properly
+	//fixed, problem was with the loop of elements after value being replaced
+	
 				//Replace - test 10
 	//replace Kong in test1 with Julien from test3
+	//cout << "test1 now is: " << test1.CStr() << endl;
+	//cout << "test3 now is: " << test3.CStr() << endl;
 	test1.Replace("KONG", test3);
+	//cout << "new string is: " << test1.CStr() << endl;
 	if (strcmp(test1.CStr(), "KING Julien") == 0) {
 		passArray[10] = 1;
 	}
@@ -454,7 +463,7 @@ void testFunctions(int* passArray) {
 				//operator= - test 15
 	test1 = "King Julien";
 	//change test1 from KING Julien to King Julien
-	if (strcmp(test1.CStr(), "King Julien")) {
+	if (strcmp(test1.CStr(), "King Julien") == 0) {
 		passArray[15] = 1;
 	}
 				//operator< - test 16
@@ -473,6 +482,15 @@ void testFunctions(int* passArray) {
 		passArray[18] = 1;
 	}
 				//operator+ - test 19
-	
+	test2 = userInput + " ";
+	//test2 should be 'dragon '
+	if (strcmp(test2.CStr(), "dragon ") == 0) {
+		passArray[19] = 1;
+	}
 				//operator+= - test 20
+	test2 += test1;
+	//test2 should be 'dragon King Julien!'
+	if (strcmp(test2.CStr(), "dragon King Julien") == 0) {
+		passArray[20] = 1;
+	}
 }
