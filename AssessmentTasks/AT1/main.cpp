@@ -283,7 +283,7 @@ int main() {
 
 					//FILE STUFF
 		//lets create and open a new file
-		const char* fileName = { "testOutput.txt" };
+		const char* fileName = {"testOutput.txt"};
 		ofstream outputFile; 
 		//open file for appending, create if doesnt exisit
 		outputFile.open(fileName, ios::out | ios::app);
@@ -299,14 +299,14 @@ int main() {
 
 		//using string to store the Date and Time to make output neater
 		//string Date = to_string(buff.tm_mday) + "/" + to_string(buff.tm_mon + 1) + "/" + to_string(buff.tm_year + 1900);
-		//string Time = to_string(buff.tm_hour) + ":" + to_string(30 + buff.tm_min) + ":" + to_string(buff.tm_sec);
+		//string Time = to_string(buff.tm_hour) + ":" + to_string(buff.tm_min) + ":" + to_string(buff.tm_sec);
 		//outputFile << "Date: " << Date << " Time: " << Time << " Success Rate: " << endl;
 
 		cout << "Writing ALL tests to file... " << fileName << endl;
-
+	
 		//without using strings
 		outputFile << "Date: " << buff.tm_mday << "/" << buff.tm_mon + 1 << "/" << buff.tm_year + 1900;
-		outputFile << " Time: " << buff.tm_hour << ":" << 30 + buff.tm_min << ":" << buff.tm_sec;
+		outputFile << " Time: " << buff.tm_hour << ":" << buff.tm_min << ":" << buff.tm_sec;
 		outputFile << " Success Rate: " << setprecision(3) << (success/numOfTests)*100.00 << "%" << endl;
 
 		//write out the success of all tests
@@ -323,6 +323,7 @@ int main() {
 		}
 
 		//close the file once complete
+		outputFile.flush();
 		outputFile.close(); 
 	}
 
@@ -445,8 +446,31 @@ void testFunctions(int* passArray) {
 		cout << "That's not right! The answer is: Dragon\n" << endl;
 	}
 				//WriteToConsole - test 12
-	//not sure how to test this oop
-	// Julian help plz
+	cout << "Expected output: " << test1.CStr() << endl;
+	cout << "Output: ";
+	test1.WriteToConsole();
+	correctInput = false;
+	String userCheck;
+	while (correctInput == false)
+	{
+		cout << "Are the expected output and output the same? (yes or no) " << endl;
+		userCheck.ReadFromConsole();
+		//if the user enters Dragon
+		//convert the input to all lower case to check if input is correct
+		userCheck.ToLower();
+		if (strcmp(userCheck.CStr(), "yes") == 0)
+		{
+			correctInput = true;
+			passArray[12] = 1;
+			break;
+		}
+		else if (strcmp(userCheck.CStr(), "no") == 0)
+		{
+			correctInput = true;
+			break;
+		}
+		cout << "Please answer yes or no!" << endl;
+	}
 	
 				//operator== - test 13
 	//compare the user into to expected value of "dragon" using ==
