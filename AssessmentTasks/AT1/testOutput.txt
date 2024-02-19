@@ -190,3 +190,25 @@ Test 18 Operator> Successful
 Test 19 Operator[] Successful
 Test 20 Operator+ Successful
 Test 21 Operator+= Successful
+Date: 19/2/2024 Time: 15:15:47 Success Rate: 100%
+Test 1 Length Successful
+Test 2 CharacterAt Successful
+Test 3 EqualTo Successful
+Test 4 Append Successful
+Test 5 Prepend Successful
+Test 6 CStr Successful
+Test 7 ToLower Successful
+Test 8 ToUpper Successful
+Test 9 Find Successful
+Test 10 FindFromIndex Successful
+Test 11 Replace Successful
+Test 12 ReadFromConsole Successful
+Test 13 WriteToConsole Successful
+Test 14 Operator== Successful
+Test 15 Operator!= Successful
+Test 16 Operator= Successful
+Test 17 Operator< Successful
+Test 18 Operator> Successful
+Test 19 Operator[] Successful
+Test 20 Operator+ Successful
+Test 21 Operator+= Successful
